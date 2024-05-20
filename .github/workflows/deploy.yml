@@ -25,13 +25,13 @@ jobs:
         run: npm run build --prod
 
       - name: Build Docker image
-        run: docker build -t my-angular-app .
+        run: docker build -t tg-angular-abstract-app .
 
       - name: Run Docker container
-        run: docker run -d -p 8080:8080 my-angular-app
+        run: docker run -d -p 8080:8080 tg-angular-abstract-app
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/my-angular-app
+          publish_dir: ./dist/tg-angular-abstract-app

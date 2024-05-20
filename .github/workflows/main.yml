@@ -24,6 +24,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: tg-angular-abstract-app/dist/browser
+          folder: dist/browser
           branch: prod
           token: ${{ secrets.DEPLOY_SECRET }}

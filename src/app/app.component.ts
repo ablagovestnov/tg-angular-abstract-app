@@ -18,6 +18,7 @@ export class AppComponent {
     this.telegram.ready();
     // Retrieve user data
     this.user = this.telegram.UserInfo
+
   }
 
   closeWebApp(): void {

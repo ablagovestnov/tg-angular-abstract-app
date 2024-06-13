@@ -48,6 +48,10 @@ COPY --from=build /usr/src/app/dist/browser/ /usr/share/nginx/html
 
 # Run the script to initialize Let's Encrypt and start cron to handle renewals
 #CMD ["/bin/sh", "-c", "/init-letsencrypt.sh && cron && nginx -g 'daemon off;'"]
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx when the container starts
 CMD ["nginx", "-g", "daemon off;"]
 
 

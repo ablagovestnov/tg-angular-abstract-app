@@ -49,7 +49,11 @@ COPY .well-known /usr/share/nginx/html/.well-known
 # Run the script to initialize Let's Encrypt and start cron to handle renewals
 CMD ["/bin/sh", "-c", "/init-letsencrypt.sh && cron && nginx -g 'daemon off;'"]
 
+# Экспонируем порт 80
+EXPOSE 80
 
+# Запуск Nginx
+CMD ["nginx", "-g", "daemon off;"]
 
 
 

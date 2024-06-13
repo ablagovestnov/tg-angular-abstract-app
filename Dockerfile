@@ -35,20 +35,20 @@ COPY adventure_finder.conf /etc/nginx/conf.d/adventure_finder.conf
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy the script to request certificates
-COPY init-letsencrypt.sh /init-letsencrypt.sh
+#COPY init-letsencrypt.sh /init-letsencrypt.sh
 
 # Make sure the script is executable
-RUN chmod +x /init-letsencrypt.sh
+#RUN chmod +x /init-letsencrypt.sh
 
 # Copy the Angular build output to Nginx's web root
 COPY --from=build /usr/src/app/dist/browser/ /usr/share/nginx/html
 
 # Copy the ACME challenge directory and file
-COPY .well-known /usr/share/nginx/html/.well-known
+#COPY .well-known /usr/share/nginx/html/.well-known
 
 # Run the script to initialize Let's Encrypt and start cron to handle renewals
-CMD ["/bin/sh", "-c", "/init-letsencrypt.sh && cron && nginx -g 'daemon off;'"]
-
+#CMD ["/bin/sh", "-c", "/init-letsencrypt.sh && cron && nginx -g 'daemon off;'"]
+CMD ["nginx", "-g", "daemon off;"]
 
 
 

@@ -57,7 +57,7 @@ RUN chown -R www-data:www-data /usr/share/nginx/html
 RUN chmod -R 755 /usr/share/nginx/html
 EXPOSE 80
 # Получаем и устанавливаем сертификат при запуске контейнера
-CMD /usr/local/bin/get_cert.sh && cron && nginx -g 'daemon off;'
+CMD ["/bin/sh", "-c", "/usr/local/bin/get_cert.sh && cron && nginx -g 'daemon off;'"]
 
 
 # Copy the ACME challenge directory and file

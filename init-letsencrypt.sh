@@ -21,7 +21,7 @@ if [ ! -e "$data_path/live/${domains[0]}" ]; then
     --agree-tos \
     --no-eff-email \
     --rsa-key-size $rsa_key_size \
-    -d adventure-finder.com -d www.adventure-finder.com
+    -d adventure-finder.com
 fi
 
 # Set up a cron job to renew the certificates

@@ -55,7 +55,7 @@ RUN mkdir -p /usr/share/nginx/html/.well-known/acme-challenge
 # Настраиваем права доступа к директории
 RUN chown -R www-data:www-data /usr/share/nginx/html
 RUN chmod -R 755 /usr/share/nginx/html
-
+EXPOSE 80
 # Получаем и устанавливаем сертификат при запуске контейнера
 CMD /usr/local/bin/get_cert.sh && cron && nginx -g 'daemon off;'
 

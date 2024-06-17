@@ -6,7 +6,7 @@ if ! [ -x "$(command -v certbot)" ]; then
 fi
 
 domains=(adventure-finder.com www.adventure-finder.com)
-rsa_key_size=4096
+rsa_key_size=2048
 data_path="/etc/letsencrypt"
 email="a.blagovestnov@yandex.ru" # Adding a valid address is strongly recommended
 
@@ -21,7 +21,10 @@ if [ ! -e "$data_path/live/${domains[0]}" ]; then
     --agree-tos \
     --no-eff-email \
     --rsa-key-size $rsa_key_size \
-    -d adventure-finder.com
+    -d adventure-finder.com -d www.adventure-finder.com
+
+  certbot --nginx -d adventure-finder.com -d www.adventure-finder.com
+
 fi
 
 # Set up a cron job to renew the certificates

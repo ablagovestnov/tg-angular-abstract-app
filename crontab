@@ -1,0 +1,1 @@
+0 3 * * * /usr/local/bin/renew_cert.sh >> /var/log/renew_cert.log 2>&1

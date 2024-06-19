@@ -41,13 +41,13 @@ RUN chmod +x /usr/local/bin/get_cert.sh
 RUN chmod +x /usr/local/bin/renew_cert.sh
 
 # Копируем crontab файл для автоматического обновления сертификатов
-COPY crontab /etc/cron.d/certbot
+#COPY crontab /etc/cron.d/certbot
 
 # Даём права cron
-RUN chmod 0644 /etc/cron.d/certbot
+#RUN chmod 0644 /etc/cron.d/certbot
 
 # Запускаем cron
-RUN crontab /etc/cron.d/certbot
+# RUN crontab /etc/cron.d/certbot
 
 # Создаем необходимую директорию
 RUN mkdir -p /usr/share/nginx/html/.well-known/acme-challenge

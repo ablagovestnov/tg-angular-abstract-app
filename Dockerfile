@@ -32,38 +32,15 @@ COPY nginx.conf /etc/nginx/nginx.conf
 # Copy the Angular build output to Nginx's web root
 COPY --from=build /usr/src/app/dist/browser/ /usr/share/nginx/html
 
-# Копируем скрипты для получения сертификатов и настройки обновлений
-COPY get_cert.sh /usr/local/bin/get_cert.sh
-COPY renew_cert.sh /usr/local/bin/renew_cert.sh
-COPY fullchain.pem /etc/letsencrypt/live/adventure-finder.com/fullchain.pem
-COPY privkey.pem /etc/letsencrypt/live/adventure-finder.com/privkey.pem
+# Копирование сценария для получения сертификата
+COPY ./init-letsencrypt.sh /init-letsencrypt.sh
+RUN chmod +x /init-letsencrypt.sh
 
-# Настраиваем права доступа к скриптам
-RUN chmod +x /usr/local/bin/get_cert.sh
-RUN chmod +x /usr/local/bin/renew_cert.sh
-
-# Копируем crontab файл для автоматического обновления сертификатов
-COPY crontab /etc/cron.d/certbot
-
-# Даём права cron
-RUN chmod 0644 /etc/cron.d/certbot
-
-# Запускаем cron
- RUN crontab /etc/cron.d/certbot
-
-# Создаем необходимую директорию
-RUN mkdir -p /usr/share/nginx/html/.well-known/acme-challenge
-
-# Настраиваем права доступа к директории
-RUN chown -R www-data:www-data /usr/share/nginx/html
-RUN chmod -R 755 /usr/share/nginx/html
 EXPOSE 80
 EXPOSE 443
-# Получаем и устанавливаем сертификат при запуске контейнера
-CMD ["/bin/sh", "-c", "/usr/local/bin/get_cert.sh && nginx -g 'daemon off;' && cron "]
 
-
-
+# Запуск Nginx и Certbot
+CMD ["sh", "-c", "nginx && /init-letsencrypt.sh"]
 
 
 

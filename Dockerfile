@@ -35,19 +35,21 @@ COPY --from=build /usr/src/app/dist/browser/ /usr/share/nginx/html
 # Копируем скрипты для получения сертификатов и настройки обновлений
 COPY get_cert.sh /usr/local/bin/get_cert.sh
 COPY renew_cert.sh /usr/local/bin/renew_cert.sh
+COPY fullchain.pem /etc/letsencrypt/live/adventure-finder.com/fullchain.pem
+COPY privkey.pem /etc/letsencrypt/live/adventure-finder.com/privkey.pem
 
 # Настраиваем права доступа к скриптам
 RUN chmod +x /usr/local/bin/get_cert.sh
 RUN chmod +x /usr/local/bin/renew_cert.sh
 
 # Копируем crontab файл для автоматического обновления сертификатов
-#COPY crontab /etc/cron.d/certbot
+COPY crontab /etc/cron.d/certbot
 
 # Даём права cron
-#RUN chmod 0644 /etc/cron.d/certbot
+RUN chmod 0644 /etc/cron.d/certbot
 
 # Запускаем cron
-# RUN crontab /etc/cron.d/certbot
+ RUN crontab /etc/cron.d/certbot
 
 # Создаем необходимую директорию
 RUN mkdir -p /usr/share/nginx/html/.well-known/acme-challenge

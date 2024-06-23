@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  frontend:
+    container_name: tg-angular-abstract-app-frontend
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+
+  backend:
+    container_name: tg-angular-abstract-app-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_URI: mongodb://mongo:27017/tg-angular-abstract-mongo
+    depends_on:
+      - mongo
+
+  bot:
+    container_name: tg-angular-abstract-app-bot
+    build:
+      context: ./bot
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    command: node main.js
+
+  mongo:
+    container_name: tg-angular-abstract-app-mongo
+    image: mongo:latest
+    ports:
+      - "27017:27017"

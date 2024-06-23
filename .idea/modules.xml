@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/tg-angular-abstract-app.iml" filepath="$PROJECT_DIR$/.idea/tg-angular-abstract-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../tg-angular-abstract-bot/.idea/tg-angular-abstract-bot.iml" filepath="$PROJECT_DIR$/../tg-angular-abstract-bot/.idea/tg-angular-abstract-bot.iml" />
+    </modules>
+  </component>
+</project>

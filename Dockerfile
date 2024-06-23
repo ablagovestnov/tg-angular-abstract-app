@@ -24,15 +24,11 @@ FROM nginx:latest
 RUN apt-get update && apt-get install -y \
     certbot \
     python3-certbot-nginx \
+    supervisor \
     cron
-
 
 # Copy custom configuration files
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY adventure_finder.conf /etc/nginx/conf.d/adventure_finder.conf
-
-# Remove the default Nginx website
-RUN rm -rf /usr/share/nginx/html/*
 
 # Copy the script to request certificates
 #COPY init-letsencrypt.sh /init-letsencrypt.sh
@@ -43,18 +39,16 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copy the Angular build output to Nginx's web root
 COPY --from=build /usr/src/app/dist/browser/ /usr/share/nginx/html
 
-# Copy the ACME challenge directory and file
-#COPY .well-known /usr/share/nginx/html/.well-known
+# Копирование сценария для получения сертификата
+COPY init-letsencrypt.sh /init-letsencrypt.sh
+RUN chmod +x /init-letsencrypt.sh
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Run the script to initialize Let's Encrypt and start cron to handle renewals
-#CMD ["/bin/sh", "-c", "/init-letsencrypt.sh && cron && nginx -g 'daemon off;'"]
-# Expose port 80
 EXPOSE 80
+EXPOSE 443
 
-# Start Nginx when the container starts
-CMD ["nginx", "-g", "daemon off;"]
-
-
-
+# Запуск Nginx и Certbot
+#CMD /bin/bash -c "nginx -g 'daemon off;' & /init-letsencrypt.sh"
+CMD ["/usr/bin/supervisord"]
 
 

@@ -1,0 +1,13 @@
+<div>
+  <h1>User Belongings</h1>
+  <form (submit)="addBelonging()">
+    <label for="name">Belonging Name:</label>
+    <input type="text" id="name" [(ngModel)]="newBelonging.name" name="name">
+    <button type="submit">Add</button>
+  </form>
+  <ul>
+    <li *ngFor="let belonging of belongings">
+      {{ belonging.name }}
+    </li>
+  </ul>
+</div>

@@ -35,12 +35,13 @@ COPY --from=build /usr/src/app/dist/browser/ /usr/share/nginx/html
 # Копирование сценария для получения сертификата
 COPY init-letsencrypt.sh /init-letsencrypt.sh
 RUN chmod +x /init-letsencrypt.sh
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 80
 EXPOSE 443
 
 # Запуск Nginx и Certbot
-CMD /bin/bash -c "nginx -g 'daemon off;' & /init-letsencrypt.sh"
-
+#CMD /bin/bash -c "nginx -g 'daemon off;' & /init-letsencrypt.sh"
+CMD ["/usr/bin/supervisord"]
 
 

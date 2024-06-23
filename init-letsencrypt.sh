@@ -15,5 +15,8 @@ fi
 certbot --nginx -d adventure-finder.com -d www.adventure-finder.com --non-interactive --agree-tos --email a.blagovestnov@gmail.com --staging
 
 cat /var/log/letsencrypt/letsencrypt.log
+
+cat /etc/nginx/nginx.conf
+
 # Перезапуск Nginx для применения новой конфигурации
 nginx -s reload

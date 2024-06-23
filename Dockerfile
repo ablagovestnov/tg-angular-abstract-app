@@ -33,15 +33,15 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist/browser/ /usr/share/nginx/html
 
 # Копирование сценария для получения сертификата
-COPY ./init-letsencrypt.sh /init-letsencrypt.sh
+COPY init-letsencrypt.sh /init-letsencrypt.sh
 RUN chmod +x /init-letsencrypt.sh
 
 EXPOSE 80
 EXPOSE 443
 
 # Запуск Nginx и Certbot
-# CMD ["/bin/sh", "-c", "nginx -g 'daemon off;' && ./init-letsencrypt.sh"]
-CMD /bin/bash -c "nginx-g 'daemon off; && /usr/local/bin/your-script.sh"
+CMD ["/bin/sh", "-c", "nginx -g 'daemon off;' && /init-letsencrypt.sh"]
+# CMD /bin/bash -c "nginx-g 'daemon off; && /init-letsencrypt.sh"
 
 
 

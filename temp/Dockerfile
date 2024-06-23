@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copy the rest of the application code
-COPY . .
+COPY ../app .
 
 # Build the Angular application
 RUN npm run build --prod
@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y \
     cron
 
 # Copy custom configuration files
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY ../app/nginx.conf /etc/nginx/nginx.conf
 
 # Copy the script to request certificates
 #COPY init-letsencrypt.sh /init-letsencrypt.sh
@@ -40,9 +40,9 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist/browser/ /usr/share/nginx/html
 
 # Копирование сценария для получения сертификата
-COPY init-letsencrypt.sh /init-letsencrypt.sh
+COPY ../app/init-letsencrypt.sh /init-letsencrypt.sh
 RUN chmod +x /init-letsencrypt.sh
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ../app/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 80
 EXPOSE 443

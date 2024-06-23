@@ -40,8 +40,7 @@ EXPOSE 80
 EXPOSE 443
 
 # Запуск Nginx и Certbot
-CMD ["/bin/sh", "-c", "nginx -g 'daemon off;' && /init-letsencrypt.sh"]
-# CMD /bin/bash -c "nginx-g 'daemon off; && /init-letsencrypt.sh"
+CMD /bin/bash -c "nginx-g 'daemon off; && sleep 5 && /init-letsencrypt.sh"
 
 
 

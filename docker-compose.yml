@@ -5,7 +5,7 @@ services:
     container_name: tg-angular-abstract-app-frontend
     build:
       context: ./app
-      dockerfile: temp/Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "80:80"
       - "443:443"

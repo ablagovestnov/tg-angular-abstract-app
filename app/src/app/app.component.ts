@@ -1,34 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BelongingsComponent } from "./belongings/belongings.component";
 import { HttpClient } from "@angular/common/http";
+import { TelegramService } from "./services/telegram/telegram.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent  implements OnInit {
-  title = 'app';
-
-  ngOnInit(): void {
-    // Initialize the Telegram Web App
-    const tg = (window as any).Telegram.WebApp;
-    tg.ready();
-
-    // Example: Set the background color to blue
-    tg.BackButton.show();
-    tg.BackButton.onClick(() => {
-      tg.BackButton.hide();
-    });
-
-    console.log(tg.initDataUnsafe.user);
-
+export class AppComponent {
+  title = 'tg-angular-abstract-app';
+  user: any;
+  telegram: TelegramService = inject(TelegramService)
+  constructor(
+  ) {
+    this.telegram.ready();
+    // Retrieve user data
+    this.user = this.telegram.UserInfo
 
   }
 
   closeWebApp(): void {
-    const tg = (window as any).Telegram.WebApp;
-    tg.close();
+    this.telegram.close()
   }
 }

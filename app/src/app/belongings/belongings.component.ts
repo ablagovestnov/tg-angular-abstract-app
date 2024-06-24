@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { BelongingsService } from "./services/belongings.service";
+import { BelongingsService } from "../services/belongings/belongings.service";
 import { HttpClient } from "@angular/common/http";
 
 @Component({
@@ -20,7 +20,7 @@ export class BelongingsComponent implements OnInit {
   }
 
   getBelongings(): void {
-    this.belongingsService.getBelongings().subscribe(data => {
+    this.belongingsService.getBelongings().subscribe((data: any) => {
       this.belongings = data;
     });
   }

@@ -28,8 +28,8 @@ RUN apt-get update && apt-get install -y \
     cron
 
 # Copy custom configuration files
-COPY nginx.conf /etc/nginx/nginx.conf
-
+COPY /nginx.conf /etc/nginx/conf.d/default.conf
+RUN chmod 644 /var/log/nginx/access.log /var/log/nginx/error.log
 # Copy the script to request certificates
 #COPY init-letsencrypt.sh /init-letsencrypt.sh
 

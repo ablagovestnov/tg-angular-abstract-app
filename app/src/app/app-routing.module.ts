@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { BelongingsComponent } from './belongings/belongings.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/belongings', pathMatch: 'full' },
-  { path: 'belongings', component: BelongingsComponent }
+  // { path: '', redirectTo: '/belongings', pathMatch: 'full' },
+  // { path: 'belongings', component: BelongingsComponent }
 ];
 
 @NgModule({

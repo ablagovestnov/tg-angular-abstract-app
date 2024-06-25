@@ -29,7 +29,11 @@ RUN apt-get update && apt-get install -y \
 
 # Copy custom configuration files
 COPY /nginx.conf /etc/nginx/conf.d/default.conf
-RUN chmod 644 /var/log/nginx/access.log /var/log/nginx/error.log
+
+RUN touch /var/log/nginx/app_access.log
+RUN touch /var/log/nginx/app_error.log
+RUN chmod 664 /var/log/nginx/app_access.log /var/log/nginx/app_error.log
+
 # Copy the script to request certificates
 #COPY init-letsencrypt.sh /init-letsencrypt.sh
 

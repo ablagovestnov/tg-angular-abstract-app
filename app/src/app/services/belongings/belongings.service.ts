@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
   providedIn: 'root',
 })
 export class BelongingsService {
-  private apiUrl = 'http://localhost:3000/api/belongings';
+  private apiUrl = 'https://localhost/api/belongings';
   http: HttpClient = inject(HttpClient)
 
 

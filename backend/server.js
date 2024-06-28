@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Connect to MongoDB using environment variable
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/tg-angular-abstract-mongo', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log('MongoDB connection error:', err));
 
@@ -29,6 +29,15 @@ app.post('/api/belongings', async (req, res) => {
   await belonging.save();
   res.status(201).json(belonging);
 });
+
+process.on('uncaughtException', (err) => {
+  console.error('Unhandled Exception', err);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection', reason);
+});
+
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);

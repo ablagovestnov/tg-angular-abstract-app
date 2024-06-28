@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { BelongingsComponent } from './belongings/belongings.component';
 import { BelongingsService } from './services/belongings/belongings.service';
 import { AppRoutingModule } from './app-routing.module';
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    CommonModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent]

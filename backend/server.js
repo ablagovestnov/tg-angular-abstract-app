@@ -19,12 +19,12 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 const Belonging = mongoose.model('Belonging', { name: String });
 
 // Routes
-app.get('/belongings', async (req, res) => {
+app.get('/api/belongings', async (req, res) => {
   const belongings = await Belonging.find();
   res.json(belongings);
 });
 
-app.post('/belongings', async (req, res) => {
+app.post('/api/belongings', async (req, res) => {
   const belonging = new Belonging(req.body);
   await belonging.save();
   res.status(201).json(belonging);

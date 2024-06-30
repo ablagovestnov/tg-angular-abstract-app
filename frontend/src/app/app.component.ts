@@ -1,16 +1,13 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { BelongingsComponent } from "./belongings/belongings.component";
-import { HttpClient } from "@angular/common/http";
+import { Component, inject } from '@angular/core';
 import { TelegramService } from "./services/telegram/telegram.service";
 
 @Component({
-  selector: 'app-root',
+  selector: 'frontend-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrl: './frontend.component.scss',
 })
 export class AppComponent {
-  title = 'tg-angular-abstract-app';
+  title = 'tg-angular-abstract-frontend';
   user: any;
   telegram: TelegramService = inject(TelegramService)
   constructor(

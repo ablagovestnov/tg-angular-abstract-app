@@ -1,0 +1,9 @@
+<nz-layout>
+  <nz-header>Welcome to the Telegram Mini App</nz-header>
+  <nz-content>
+    <pre *ngIf="!!user">{{ user | json}}</pre>
+    <button nz-button (click)="closeWebApp()">Close App</button>
+    <router-outlet />
+  </nz-content>
+  <nz-footer>Footer</nz-footer>
+</nz-layout>

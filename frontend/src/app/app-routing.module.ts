@@ -1,11 +1,11 @@
-// src/app/app-routing.module.ts
+// src/frontend/frontend-routing.module.ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BelongingsComponent } from './belongings/belongings.component';
+import { TestDataComponent } from "./components/test-data/test-data.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/belongings', pathMatch: 'full' },
-  { path: 'belongings', component: BelongingsComponent }
+  { path: '', redirectTo: '/test-data', pathMatch: 'full' },
+  { path: 'test-data', component: TestDataComponent }
 ];
 
 @NgModule({

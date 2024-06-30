@@ -1,0 +1,10 @@
+<div style="text-align:center; margin-top: 50px;">
+  <h1>User Test Data</h1>
+  <form (submit)="addData()">
+    <input type="text" id="name" [(ngModel)]="newData.name" name="name">
+    <button type="submit">Add</button>
+  </form>
+</div>
+<ul>
+  <li *ngFor="let item of (data$ | async)">{{ item.name }}</li>
+</ul>

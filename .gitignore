@@ -1,0 +1,5 @@
+# Project exclude paths
+/backend/node_modules
+/bot/node_modules
+/frontend/node_modules
+/.idea/

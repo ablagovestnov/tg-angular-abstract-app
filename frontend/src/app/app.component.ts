@@ -2,9 +2,9 @@ import { Component, inject } from '@angular/core';
 import { TelegramService } from "./services/telegram/telegram.service";
 
 @Component({
-  selector: 'frontend-root',
+  selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './frontend.component.scss',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'tg-angular-abstract-frontend';

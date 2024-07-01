@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  frontend:
+  test-frontend:
     container_name: tg-angular-abstract-frontend-frontend
     build:
       context: ./frontend
@@ -21,6 +21,7 @@ services:
       - "3000:3000"
     environment:
       MONGO_URI: mongodb://mongo:27017/tg-angular-abstract-mongo
+      TELEGRAM_SECRET_TOKEN: 7012022502:AAG6rOFhryq0xE8NKZ5pe0ZN3n5Fsee4grs
     depends_on:
       - mongo
 
@@ -31,6 +32,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3001:3001"
+    environment:
+      TELEGRAM_SECRET_TOKEN: 7012022502:AAG6rOFhryq0xE8NKZ5pe0ZN3n5Fsee4grs
+      TELEGRAM_APP_URL: https://adventure-finder.loca.lt
     command: node main.js
 
   mongo:

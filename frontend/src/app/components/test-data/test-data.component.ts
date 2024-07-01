@@ -3,7 +3,7 @@ import { TestDataService } from "../../services/test-data/test-data.service";
 import { Subject } from "rxjs";
 
 @Component({
-  selector: 'frontend-test-data',
+  selector: 'app-test-data',
   templateUrl: './test-data.component.html',
   styleUrl: './test-data.component.scss'
 })

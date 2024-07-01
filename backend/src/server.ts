@@ -3,6 +3,7 @@ import mongoose, { ConnectOptions } from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { validate, parse, type InitDataParsed } from '@tma.js/init-data-node';
+import {env} from "process";
 
 
 /**
@@ -83,7 +84,7 @@ const defaultErrorMiddleware: ErrorRequestHandler = (err, _req, res) => {
 };
 
 // Your secret bot token.
-const token = '7012022502:AAG6rOFhryq0xE8NKZ5pe0ZN3n5Fsee4grs';
+const token = env.TELEGRAM_SECRET_TOKEN;
 
 const app = express();
 const port = 3000;
@@ -97,7 +98,7 @@ app.use(authMiddleware);
 app.use(bodyParser.json());
 
 // Connect to MongoDB using environment variable
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/tg-angular-abstract-mongo')
+mongoose.connect(env.MONGO_URI || 'mongodb://localhost:27017/tg-angular-abstract-mongo')
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log('MongoDB connection error:', err));
 

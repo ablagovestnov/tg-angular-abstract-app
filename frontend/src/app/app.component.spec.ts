@@ -8,7 +8,7 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
-  it('should create the frontend', () => {
+  it('should create the App', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
@@ -24,6 +24,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, frontend');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, app');
   });
 });

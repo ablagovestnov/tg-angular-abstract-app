@@ -1,4 +1,4 @@
-// src/frontend/frontend-routing.module.ts
+// src/app/app-routing.module.ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TestDataComponent } from "./components/test-data/test-data.component";

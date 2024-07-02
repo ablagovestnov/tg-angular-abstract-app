@@ -7,7 +7,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "80"
     networks:
       - zoo
       - test-app
@@ -20,7 +20,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3000"
     networks:
       - test-app
     environment:
@@ -35,7 +35,7 @@ services:
       context: ./bot
       dockerfile: Dockerfile
     ports:
-      - "3001:3001"
+      - "3001"
     networks:
       - test-app
     environment:

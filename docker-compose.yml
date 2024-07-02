@@ -7,8 +7,10 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "80:80"
-      - "443:443"
+      - "3002:3002"
+    networks:
+      - zoo
+      - test-app
     depends_on:
       - backend
 
@@ -19,6 +21,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    networks:
+      - test-app
     environment:
       MONGO_URI: mongodb://mongo:27017/tg-angular-abstract-mongo
       TELEGRAM_SECRET_TOKEN: 7012022502:AAG6rOFhryq0xE8NKZ5pe0ZN3n5Fsee4grs
@@ -32,6 +36,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3001:3001"
+    networks:
+      - test-app
     environment:
       TELEGRAM_SECRET_TOKEN: 7012022502:AAG6rOFhryq0xE8NKZ5pe0ZN3n5Fsee4grs
       TELEGRAM_APP_URL: https://adventure-finder.loca.lt
@@ -42,8 +48,16 @@ services:
     image: mongo:latest
     ports:
       - "27017:27017"
+    networks:
+      - test-app
     volumes:
       - mongodb-data:/data/db
 
 volumes:
   mongodb-data:
+
+networks:
+  test-app:
+    driver: bridge
+  zoo:
+    driver: bridge
